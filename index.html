@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Worth Counter</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
+
+  </head>
+  <body>
+      <div class="main_container">
+        <div class="two_column_split">
+            <div class="left_column">
+                <h1>What's your time really worth?</h1>
+                <h2>Watch your earnings tick up in real time.</h2>
+
+                <div class="input_container">
+                    <div class="input_drop_shadow">
+                         <h5>$</h5>
+                         <input id="User_Input" class="input" type="text" placeholder="59,039">                    
+                         <input class="button" type="button" value="PER YEAR">
+                    </div>
+                    <button onclick="getUserInput()" class="labor_button">LABOR</button>
+                </div>
+
+                <div class="input_examples">
+                    <h3>Try one of these:</h3>
+                    <button class="example" id="Jeff_Bezos">Jeff Bezos</button>
+                    <button class="example" id="Public_School_Teacher">Public School Teacher</button>
+                    <button class="example" id="Mark_Zuckerberg">Mark Zuckerberg</button>
+                    <button class="example" id="Amazon_Employee">Amazon Employee</button>
+                    <button class="example" id="Immigrant">Immigrant</button>
+                </div>
+
+            </div>
+
+            <div class="right_column">
+                <h1>You've earned:</h1>
+                <h2 id="Result_Display">$0.00</h2>
+                <h3>(Enter a number on the left to begin)</h3>
+            </div>
+
+        </div>
+      </div>
+      <script src="main.js"></script>
+  </body>
+</html>
