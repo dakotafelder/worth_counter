@@ -1,10 +1,10 @@
 <script>
-let wage = '';
-let rate;
+  let wage = "";
+  let rate = "";
 
-function setRate(type) {
-  rate = type;
-}
+  function setRate(type) {
+    rate = type;
+  }
 </script>
 
 <style lang="scss">
@@ -83,11 +83,19 @@ function setRate(type) {
 <div class="wage">
   <h2>Enter your wage</h2>
   <div class="wage-input">
-    <input value={wage} min=0 placeholder="24,000" />
+    <input bind:value={wage} min="0" placeholder="24,000" />
   </div>
   <div class="rate-input">
-    <button on:click={setRate('hour')}>PER HOUR</button>
-    <button on:click={setRate('year')}>PER YEAR</button>
+    <button
+      on:click={() => setRate('hour')}
+      class={rate === 'hour' ? 'active' : ''}>
+      PER HOUR
+    </button>
+    <button
+      on:click={() => setRate('year')}
+      class={rate === 'year' ? 'active' : ''}>
+      PER YEAR
+    </button>
   </div>
   <button class="start">START</button>
 </div>
