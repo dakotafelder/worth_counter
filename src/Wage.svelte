@@ -56,7 +56,11 @@ function setRate(type) {
     border: 1px solid #000000;
     border-radius: 4px;
   }
-  .rate-input button:hover {
+  .rate-input button.active {
+    cursor: default;
+  }
+  .rate-input button:hover,
+  .rate-input button.active {
     background: #000;
     color: #fff;
     border: 1px solid #000000;
