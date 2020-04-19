@@ -23,17 +23,17 @@
 <style>
   #app {
     display: flex;
+    align-items: center;
+    height: 100vh;
   }
   .guillotine {
-    height: 100vh;
+    width: 40%;
   }
   h1 {
     font-size: 72px;
     margin-bottom: 80px;
   }
   .info {
-    margin-top: auto;
-    margin-bottom: auto;
     margin-left: 10%;
     width: 56%;
   }
