@@ -1,9 +1,26 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
   let wage = "";
   let rate = "";
 
   function setRate(type) {
     rate = type;
+  }
+
+  function formatWage() {
+    if (wage.split(".").length > 2) {
+      return wage.split(".").slice(0, 2).join(".")
+    }
+    return wage.replace(/([^\d\.])/g,'');
+  }
+
+  function start() {
+    const strippedWage = formatWage();
+    if (wage.length === 0 || rate.length === 0) return;
+
+    dispatch('start', { rate: rate, wage: strippedWage });
   }
 </script>
 
