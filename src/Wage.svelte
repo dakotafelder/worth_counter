@@ -114,5 +114,5 @@
       PER YEAR
     </button>
   </div>
-  <button class="start">START</button>
+  <button on:click={start} class="start">START</button>
 </div>
