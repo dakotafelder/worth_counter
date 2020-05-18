@@ -32,6 +32,7 @@
   .wage {
     width: 25vw;
     padding: 32px;
+    max-width: 362px;
     background: #fff;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
@@ -46,7 +47,7 @@
   }
   .wage-input input {
     box-sizing: border-box;
-    width: calc(100% - 30px);
+    width: calc(100% - 40px);
     margin-left: 30px;
     font-size: 24px;
   }
