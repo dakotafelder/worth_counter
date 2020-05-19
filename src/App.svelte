@@ -14,8 +14,12 @@
 </script>
 
 <style>
+  main {
+    height: 100vh;
+  }
   #app {
     display: flex;
+    min-height: 100%;
   }
   .guillotine {
     margin: auto 0;
@@ -34,7 +38,7 @@
     h1 {
       margin-top: 100px;
       margin-bottom: 60px;
-      font-size: 48px;
+      font-size: 56px;
     }
     #app {
       flex-direction: column-reverse;
@@ -51,6 +55,9 @@
   }
 
   @media (max-width: 600px) {
+    h1 {
+      font-size: 48px;
+    }
     .info {
       width: 90%;
     }
