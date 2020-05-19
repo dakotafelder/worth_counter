@@ -70,22 +70,31 @@
   li {
     margin-bottom: 28px;
   }
+  .number {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 47px;
+  }
+  .secondary-counters .number {
+    font-size: 24px;
+    line-height: 28px;
+  }
 </style>
 
 <ul class="main-counters">
   <li>
     <div class="label">TIME ELAPSED</div>
-    <div>{timer}</div>
+    <div class="number">{timer}</div>
   </li>
 
   <li>
     <div class="label">YOU'VE EARNED</div>
-    <div>{youEarned}</div>
+    <div class="number">{youEarned}</div>
   </li>
 
   <li>
     <div class="label">JEFF'S EARNED</div>
-    <div>{jeffEarned}</div>
+    <div class="number">{jeffEarned}</div>
   </li>
 
 </ul>
@@ -93,11 +102,11 @@
 <ul class="secondary-counters">
   <li>
     <div class="label">TIME TO $1M</div>
-    <div>{timeToMillion}</div>
+    <div class="number">{timeToMillion}</div>
   </li>
 
   <li>
     <div class="label">TIME TO $1B</div>
-    <div>{timeToBillion}</div>
+    <div class="number">{timeToBillion}</div>
   </li>
 </ul>
