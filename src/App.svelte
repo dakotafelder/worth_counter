@@ -24,10 +24,11 @@
   .guillotine {
     margin: auto 0;
     width: 40%;
+    max-width: 550px;
   }
   h1 {
     font-size: 72px;
-    margin-top: 20%;
+    margin-top: 10%;
     margin-bottom: 80px;
   }
   .info {
