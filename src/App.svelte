@@ -1,4 +1,5 @@
 <script>
+	import { fly } from 'svelte/transition';
   import Wage from "./Wage.svelte";
   import Counter from "./Counter.svelte";
 
@@ -20,11 +21,19 @@
   #app {
     display: flex;
     min-height: 100%;
+    overflow-x: hidden;
   }
   .guillotine {
-    margin: auto 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100vh;
     width: 40%;
     max-width: 550px;
+  }
+  .guillotine img {
+    position: absolute;
+    width: 100%;
   }
   h1 {
     font-size: 72px;
@@ -50,7 +59,6 @@
       margin: 0;
     }
     .guillotine {
-      margin-top: 80px;
       width: 60%;
     }
   }
@@ -70,13 +78,19 @@
 
 <main>
   <div id="app">
-    <img alt="" src="./assets/guillotine.png" class="guillotine" />
+    <div class="guillotine">
+      <img alt="" src="./assets/guillotine.png" />
+    </div>
     <div class="info">
       <h1>What's your time<br>really worth?</h1>
       {#if showCounter}
-        <Counter wage={wage} rate={rate}/>
+        <div transition:fly="{{ delay: 200, x: 200, duration: 200 }}">
+          <Counter wage={wage} rate={rate}/>
+        </div>
         {:else}
-        <Wage on:start={start}/>
+        <div transition:fly="{{ x: -200, duration: 200 }}">
+          <Wage on:start={start}/>
+        </div>
       {/if}
     </div>
   </div>
