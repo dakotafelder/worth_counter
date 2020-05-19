@@ -72,7 +72,11 @@
     <img alt="" src="./assets/guillotine.png" class="guillotine" />
     <div class="info">
       <h1>What's your time<br>really worth?</h1>
-      <Wage />
+      {#if showCounter}
+        <Counter wage={wage} rate={rate}/>
+        {:else}
+        <Wage on:start={start}/>
+      {/if}
     </div>
   </div>
 </main>
