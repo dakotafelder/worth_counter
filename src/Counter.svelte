@@ -48,8 +48,8 @@
 
   onMount(() => {
     setInterval(() => {
-      seconds += 1;
-    }, 1000);
+      seconds += .1;
+    }, 100);
   });
 </script>
 
