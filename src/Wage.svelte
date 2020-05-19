@@ -30,7 +30,6 @@
     margin-bottom: 24px;
   }
   .wage {
-    width: 25vw;
     padding: 32px;
     max-width: 362px;
     background: #fff;
@@ -95,6 +94,12 @@
     border: 1px solid #000000;
     border-radius: 4px;
     font-size: 16px;
+  }
+
+  @media (max-width: 960px) {
+    .wage {
+      max-width: unset;
+    }
   }
 </style>
 

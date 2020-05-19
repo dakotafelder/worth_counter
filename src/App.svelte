@@ -1,41 +1,62 @@
 <script>
   import Wage from "./Wage.svelte";
+  import Counter from "./Counter.svelte";
 
-  let userInput = 0;
-  const secondsInYear = 31557600;
-  let increment = 0;
-  let currentValue = 0;
+  let wage = "";
+  let rate = "";
+  let showCounter = false;
 
-  function getUserInput() {
-    userInput = +document.getElementById("User_Input").value;
-    increment = userInput / secondsInYear;
-    setInterval(yearCalc, 1000);
-  }
-
-  function yearCalc() {
-    currentValue = currentValue + increment;
-    document.getElementById("Result_Display").innerHTML = currentValue.toFixed(
-      2
-    );
+  function start(evt) {
+    wage = evt.detail.wage;
+    rate = evt.detail.rate;
+    showCounter = true;
   }
 </script>
 
 <style>
   #app {
     display: flex;
-    align-items: center;
-    height: 100vh;
   }
   .guillotine {
+    margin: auto 0;
     width: 40%;
   }
   h1 {
     font-size: 72px;
+    margin-top: 20%;
     margin-bottom: 80px;
   }
   .info {
     margin-left: 10%;
     width: 56%;
+  }
+   @media (max-width: 960px) {
+    h1 {
+      margin-top: 100px;
+      margin-bottom: 60px;
+      font-size: 48px;
+    }
+    #app {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    .info {
+      width: 70%;
+      margin: 0;
+    }
+    .guillotine {
+      margin-top: 80px;
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .info {
+      width: 90%;
+    }
+    .guillotine {
+      width: 90%;
+    }
   }
 </style>
 
