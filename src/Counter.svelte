@@ -13,6 +13,7 @@
   const LABELS = ["YEAR", "DAY", "HOUR", "MINUTE", "SECOND"]
 
   let seconds = 0;
+  let floatSeconds = 0;
 
   import { onMount } from "svelte";
 
@@ -58,14 +59,18 @@
 
   $: timer = formatTime(seconds);
   $: youEarned =
-    rate === "hour" ? hourly(wage, seconds) : yearly(wage, seconds);
-  $: jeffEarned = yearly(BEZOS_2020, seconds);
+    rate === "hour" ? hourly(wage, floatSeconds) : yearly(wage, floatSeconds);
+  $: jeffEarned = yearly(BEZOS_2020, floatSeconds);
   $: timeToMillion = timeToX(1000000, wage, rate, seconds);
   $: timeToBillion = timeToX(1000000000, wage, rate, seconds);
 
   onMount(() => {
     setInterval(() => {
-      seconds = parseFloat((seconds += .2).toFixed(1));
+      floatSeconds = parseFloat((floatSeconds += .2).toFixed(1));
+
+      if (floatSeconds % 1 === 0) {
+        seconds = seconds += 1;
+      }
     }, 200);
   });
 </script>
