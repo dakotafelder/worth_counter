@@ -10,6 +10,7 @@
   const WORK_HOURS_IN_YEAR = 2085;
   const HOURS_IN_YEAR = 8760;
   const BEZOS_2020 = 30600000000;
+  const BEZOS_NET = 150300000000;
   const LABELS = ["YEAR", "DAY", "HOUR", "MINUTE", "SECOND"];
 
   let seconds = 0;
@@ -60,8 +61,10 @@
   $: youEarned =
     rate === "hour" ? hourly(wage, floatSeconds) : yearly(wage, floatSeconds);
   $: jeffEarned = yearly(BEZOS_2020, floatSeconds);
+  $: jeffEarnedBySeconds = BEZOS_NET + parseFloat(yearly(BEZOS_2020, seconds));
   $: timeToMillion = timeToX(1000000, wage, rate, seconds);
   $: timeToBillion = timeToX(1000000000, wage, rate, seconds);
+  $: timeToJeff = timeToX(jeffEarnedBySeconds, wage, rate, seconds);
 
   onMount(() => {
     setInterval(() => {
@@ -164,6 +167,18 @@
     <div class="label">TIME TO $1B</div>
     <div class="numbers-with-units">
       {#each timeToBillion as unit, index}
+        <div class="number">
+          <Ticker digits={unit} />
+          <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
+        </div>
+      {/each}
+    </div>
+  </li>
+
+   <li>
+    <div class="label">TIME TO JEFF</div>
+    <div class="numbers-with-units">
+      {#each timeToJeff as unit, index}
         <div class="number">
           <Ticker digits={unit} />
           <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
