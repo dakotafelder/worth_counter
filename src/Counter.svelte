@@ -1,4 +1,6 @@
 <script>
+  import Ticker from './Ticker.svelte';
+
   export let wage;
   export let rate;
 
@@ -48,8 +50,8 @@
 
   onMount(() => {
     setInterval(() => {
-      seconds += .1;
-    }, 100);
+      seconds += .2;
+    }, 200);
   });
 </script>
 
@@ -84,17 +86,19 @@
 <ul class="main-counters">
   <li>
     <div class="label">TIME ELAPSED</div>
-    <div class="number">{timer}</div>
+    <div class="number">
+      <Ticker digits={timer}></Ticker>
+    </div>
   </li>
 
   <li>
     <div class="label">YOU'VE EARNED</div>
-    <div class="number">{youEarned}</div>
+    <div class="number"><Ticker digits={`$${youEarned}`}></Ticker></div>
   </li>
 
   <li>
     <div class="label">JEFF'S EARNED</div>
-    <div class="number">{jeffEarned}</div>
+    <div class="number"><Ticker digits={`$${jeffEarned}`}></Ticker></div>
   </li>
 
 </ul>

@@ -29,7 +29,7 @@ $: stringNumber = digits.toString().split('').reverse();
 </style>
 
 
-<div class="ticker-container">
+<span class="ticker-container">
   {#each stringNumber as char, index}
     {#if parseInt(char) || char === "0"}
       <span class="digit">
@@ -43,4 +43,4 @@ $: stringNumber = digits.toString().split('').reverse();
      <span>{char}</span>
     {/if}
   {/each}
-</div>
+</span>
