@@ -1,5 +1,5 @@
 <script>
-  import Ticker from './Ticker.svelte';
+  import Ticker from "./Ticker.svelte";
 
   export let wage;
   export let rate;
@@ -7,10 +7,10 @@
   const SECONDS_IN_HOUR = 3600;
   const SECONDS_IN_DAY = 86400;
   const SECONDS_IN_YEAR = 31557600;
-  const WORK_HOURS_IN_YEAR = 2080;
+  const WORK_HOURS_IN_YEAR = 2085;
   const HOURS_IN_YEAR = 8760;
   const BEZOS_2020 = 30600000000;
-  const LABELS = ["YEAR", "DAY", "HOUR", "MINUTE", "SECOND"]
+  const LABELS = ["YEAR", "DAY", "HOUR", "MINUTE", "SECOND"];
 
   let seconds = 0;
   let floatSeconds = 0;
@@ -34,15 +34,14 @@
       parseInt((seconds % SECONDS_IN_DAY) / SECONDS_IN_HOUR),
       parseInt((seconds / 60) % 60),
       parseInt(seconds % 60)
-    ]
-      .map(int => int.toString())
+    ].map(int => int.toString());
   }
 
   function timeToX(x, wage, rate, seconds) {
-    return formatToYear(
-      (x / (wage * (1 / (rate === "hour" ? SECONDS_IN_HOUR : SECONDS_IN_YEAR))) * (rate === "hour" ? (HOURS_IN_YEAR / WORK_HOURS_IN_YEAR) : 1)) -
-        seconds
-    );
+    const wagePerYear = (rate === "hour") ? (wage * WORK_HOURS_IN_YEAR) : wage;
+    const wagePerSecond = wagePerYear / SECONDS_IN_YEAR;
+
+    return formatToYear((x / wagePerSecond) - seconds);
   }
 
   function hourly(wage, seconds) {
@@ -54,7 +53,7 @@
   }
 
   function getPlural(number) {
-    return parseInt(number) === 1 ? '' : 'S'
+    return parseInt(number) === 1 ? "" : "S";
   }
 
   $: timer = formatTime(seconds);
@@ -66,7 +65,7 @@
 
   onMount(() => {
     setInterval(() => {
-      floatSeconds = parseFloat((floatSeconds += .2).toFixed(1));
+      floatSeconds = parseFloat((floatSeconds += 0.2).toFixed(1));
 
       if (floatSeconds % 1 === 0) {
         seconds = seconds += 1;
@@ -128,18 +127,22 @@
   <li>
     <div class="label">TIME ELAPSED</div>
     <div class="number">
-      <Ticker digits={timer}></Ticker>
+      <Ticker digits={timer} />
     </div>
   </li>
 
   <li>
     <div class="label">YOU'VE EARNED</div>
-    <div class="number"><Ticker digits={`$${youEarned}`}></Ticker></div>
+    <div class="number">
+      <Ticker digits={`$${youEarned}`} />
+    </div>
   </li>
 
   <li>
     <div class="label">JEFF'S EARNED</div>
-    <div class="number"><Ticker digits={`$${jeffEarned}`}></Ticker></div>
+    <div class="number">
+      <Ticker digits={`$${jeffEarned}`} />
+    </div>
   </li>
 
 </ul>
@@ -148,22 +151,24 @@
   <li>
     <div class="label">TIME TO $1M</div>
     <div class="numbers-with-units">
-    {#each timeToMillion as unit, index}
-      <div class="number">
-        <Ticker digits={unit}></Ticker><span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
-      </div>
-    {/each}
+      {#each timeToMillion as unit, index}
+        <div class="number">
+          <Ticker digits={unit} />
+          <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
+        </div>
+      {/each}
     </div>
   </li>
 
   <li>
     <div class="label">TIME TO $1B</div>
     <div class="numbers-with-units">
-    {#each timeToBillion as unit, index}
-      <div class="number">
-        <Ticker digits={unit}></Ticker><span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
-      </div>
-    {/each}
+      {#each timeToBillion as unit, index}
+        <div class="number">
+          <Ticker digits={unit} />
+          <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
+        </div>
+      {/each}
     </div>
   </li>
 </ul>
