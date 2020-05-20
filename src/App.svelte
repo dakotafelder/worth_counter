@@ -21,7 +21,7 @@
   #app {
     display: flex;
     min-height: 100%;
-    overflow-x: hidden;
+    width: 100%;
   }
   .guillotine {
     position: relative;
@@ -38,7 +38,7 @@
   h1 {
     font-size: 72px;
     margin-top: 10%;
-    margin-bottom: 80px;
+    margin-bottom: 72px;
   }
   .info {
     margin-left: 10%;
@@ -59,7 +59,12 @@
       margin: 0;
     }
     .guillotine {
+      margin-top: 80px;
       width: 60%;
+      height: unset;
+    }
+    .guillotine img {
+      position: relative;
     }
   }
 
