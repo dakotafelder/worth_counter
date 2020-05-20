@@ -7,6 +7,8 @@
   const SECONDS_IN_HOUR = 3600;
   const SECONDS_IN_DAY = 86400;
   const SECONDS_IN_YEAR = 31557600;
+  const WORK_HOURS_IN_YEAR = 2080;
+  const HOURS_IN_YEAR = 8760;
   const BEZOS_2020 = 30600000000;
   const LABELS = ["YEAR", "DAY", "HOUR", "MINUTE", "SECOND"]
 
@@ -37,7 +39,7 @@
 
   function timeToX(x, wage, rate, seconds) {
     return formatToYear(
-      x / (wage * (1 / (rate === "hour" ? SECONDS_IN_HOUR : SECONDS_IN_YEAR))) -
+      (x / (wage * (1 / (rate === "hour" ? SECONDS_IN_HOUR : SECONDS_IN_YEAR))) * (rate === "hour" ? (HOURS_IN_YEAR / WORK_HOURS_IN_YEAR) : 1)) -
         seconds
     );
   }
