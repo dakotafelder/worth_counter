@@ -14,11 +14,8 @@ $: stringNumber = digits.toString().split('').reverse();
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
-  margin-right: auto;
-  margin-left: auto;
   height: 1em;
-  font-size: 40px;
-  line-height: 40px;
+  line-height: 1em;
   overflow-y: hidden;
 }
 .ticker {
