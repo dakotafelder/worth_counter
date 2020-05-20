@@ -46,7 +46,7 @@
   }
    @media (max-width: 960px) {
     h1 {
-      margin-top: 100px;
+      margin-top: 70px;
       margin-bottom: 60px;
       font-size: 56px;
     }
