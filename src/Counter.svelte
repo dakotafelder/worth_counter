@@ -5,8 +5,10 @@
   export let rate;
 
   const SECONDS_IN_HOUR = 3600;
+  const SECONDS_IN_DAY = 86400;
   const SECONDS_IN_YEAR = 31557600;
   const BEZOS_2020 = 30600000000;
+  const LABELS = ["YEAR", "DAY", "HOUR", "MINUTE", "SECOND"]
 
   let seconds = 0;
 
@@ -22,12 +24,19 @@
       .replace(/\b(\d)\b/g, "0$1");
   }
 
-  function formatToMilliseconds(seconds) {
-    return new Date(1000 * seconds).toISOString().substr(11, 12);
+  function formatToYear(seconds) {
+    return [
+      parseInt(seconds / SECONDS_IN_YEAR),
+      parseInt((seconds % SECONDS_IN_YEAR) / SECONDS_IN_DAY),
+      parseInt((seconds % SECONDS_IN_DAY) / SECONDS_IN_HOUR),
+      parseInt((seconds / 60) % 60),
+      parseInt(seconds % 60)
+    ]
+      .map(int => int.toString())
   }
 
   function timeToX(x, wage, rate, seconds) {
-    return formatTime(
+    return formatToYear(
       x / (wage * (1 / (rate === "hour" ? SECONDS_IN_HOUR : SECONDS_IN_YEAR))) -
         seconds
     );
@@ -41,6 +50,10 @@
     return (wage * (seconds / SECONDS_IN_YEAR)).toFixed(2);
   }
 
+  function getPlural(number) {
+    return parseInt(number) === 1 ? '' : 'S'
+  }
+
   $: timer = formatTime(seconds);
   $: youEarned =
     rate === "hour" ? hourly(wage, seconds) : yearly(wage, seconds);
@@ -50,7 +63,7 @@
 
   onMount(() => {
     setInterval(() => {
-      seconds += .2;
+      seconds = parseFloat((seconds += .2).toFixed(1));
     }, 200);
   });
 </script>
@@ -77,9 +90,30 @@
     font-size: 40px;
     line-height: 47px;
   }
+  .numbers-with-units {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+  }
   .secondary-counters .number {
+    display: flex;
+    align-items: center;
+    margin-right: 32px;
+    margin-bottom: 5px;
     font-size: 24px;
-    line-height: 28px;
+    line-height: 24px;
+  }
+  .secondary-counters .number:last-of-type {
+    margin-right: 0;
+  }
+  .unit-label {
+    font-size: 16px;
+    line-height: 19px;
+    margin-left: 6px;
+    margin-top: 2px;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #808080;
   }
 </style>
 
@@ -106,11 +140,23 @@
 <ul class="secondary-counters">
   <li>
     <div class="label">TIME TO $1M</div>
-    <div class="number">{timeToMillion}</div>
+    <div class="numbers-with-units">
+    {#each timeToMillion as unit, index}
+      <div class="number">
+        <Ticker digits={unit}></Ticker><span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
+      </div>
+    {/each}
+    </div>
   </li>
 
   <li>
     <div class="label">TIME TO $1B</div>
-    <div class="number">{timeToBillion}</div>
+    <div class="numbers-with-units">
+    {#each timeToBillion as unit, index}
+      <div class="number">
+        <Ticker digits={unit}></Ticker><span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
+      </div>
+    {/each}
+    </div>
   </li>
 </ul>
