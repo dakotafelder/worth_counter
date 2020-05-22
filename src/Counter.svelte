@@ -177,18 +177,6 @@
     </div>
   </li>
 
-  <li>
-    <div class="label">TIME TO $1B</div>
-    <div class="numbers-with-units">
-      {#each timeToBillion as unit, index}
-        <div class="number">
-          <Ticker digits={formatCommas(unit)} />
-          <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
-        </div>
-      {/each}
-    </div>
-  </li>
-
    <li>
     <div class="label">TIME TO JEFF</div>
     <div class="numbers-with-units">
