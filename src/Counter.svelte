@@ -46,11 +46,25 @@
   }
 
   function hourly(wage, seconds) {
-    return (wage * (seconds / SECONDS_IN_HOUR)).toFixed(2);
+    return formatCommas((wage * (seconds / SECONDS_IN_HOUR)).toFixed(2))
   }
 
   function yearly(wage, seconds) {
-    return (wage * (seconds / SECONDS_IN_YEAR)).toFixed(2);
+    return formatCommas((wage * (seconds / SECONDS_IN_YEAR)).toFixed(2));
+  }
+
+  function formatCommas(numbers) {
+    const decimals = numbers.split(".")[1];
+    const numbersAsInt = parseInt(numbers).toString();
+    const numbersAsArray = numbersAsInt.split('');
+
+    const formattedNumbers = numbersAsArray.reduce((acc, current, idx, src) => {
+      const comma = ((src.length - idx) % 3 === 0 && idx > 0) ? ',' : ''
+
+      return `${acc}${comma}${current}`
+    }, '')
+
+    return decimals ? `${formattedNumbers}.${decimals}` : formattedNumbers;
   }
 
   function getPlural(number) {
