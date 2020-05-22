@@ -31,10 +31,9 @@
   }
   .wage {
     padding: 32px;
+    padding-left: 0;
     max-width: 362px;
     background: #fff;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
   }
   .wage-input {
     position: relative;
@@ -42,7 +41,6 @@
     padding-bottom: 6px;
     font-size: 24px;
     border: 1px solid #000000;
-    border-radius: 4px;
   }
   .wage-input input {
     box-sizing: border-box;
@@ -71,7 +69,6 @@
     padding: 8px 35px;
     background: #fff;
     border: 1px solid #000000;
-    border-radius: 4px;
   }
   .rate-input button.active {
     cursor: default;
@@ -92,7 +89,6 @@
     color: #fff;
     background: #000000;
     border: 1px solid #000000;
-    border-radius: 4px;
     font-size: 16px;
   }
 
