@@ -170,7 +170,7 @@
     <div class="numbers-with-units">
       {#each timeToMillion as unit, index}
         <div class="number">
-          <Ticker digits={unit} />
+          <Ticker digits={formatCommas(unit)} />
           <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
         </div>
       {/each}
@@ -182,7 +182,7 @@
     <div class="numbers-with-units">
       {#each timeToBillion as unit, index}
         <div class="number">
-          <Ticker digits={unit} />
+          <Ticker digits={formatCommas(unit)} />
           <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
         </div>
       {/each}
@@ -194,7 +194,7 @@
     <div class="numbers-with-units">
       {#each timeToJeff as unit, index}
         <div class="number">
-          <Ticker digits={unit} />
+          <Ticker digits={formatCommas(unit)} />
           <span class="unit-label">{`${LABELS[index]}${getPlural(unit)}`}</span>
         </div>
       {/each}
