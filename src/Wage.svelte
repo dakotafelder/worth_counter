@@ -95,6 +95,7 @@
   @media (max-width: 960px) {
     .wage {
       max-width: unset;
+      padding: unset;
     }
   }
 </style>

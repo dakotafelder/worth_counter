@@ -59,7 +59,7 @@
       margin: 0;
     }
     .guillotine {
-      margin-top: 80px;
+      margin-top: 0;
       width: 60%;
       height: unset;
     }
@@ -84,7 +84,7 @@
 <main>
   <div id="app">
     <div class="guillotine">
-      <img alt="" src="./assets/guillotine.png" />
+      <img alt="" src="./assets/guillotine_final_final_2.png" />
     </div>
     <div class="info">
       <h1>What's your time<br>really worth?</h1>
