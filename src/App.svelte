@@ -84,7 +84,7 @@
 <main>
   <div id="app">
     <div class="guillotine">
-      <img alt="" src="./assets/guillotine_final_final_2.png" />
+      <img alt="" src="./assets/guillotine_final_final_final.png" />
     </div>
     <div class="info">
       <h1>What's your time<br>really worth?</h1>
