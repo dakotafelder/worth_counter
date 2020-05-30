@@ -28,55 +28,68 @@
     display: flex;
     align-items: center;
     height: 100vh;
-    width: 40%;
-    max-width: 550px;
+    width: 60%;
+    max-width: calc(.7 * 110vh);
   }
   .guillotine img {
-    position: absolute;
-    width: 100%;
+    position: fixed;
+    width: 60%;
+    max-width: calc(.7 * 110vh);
+  }
+  .info {
+    margin: 0 20px;
+    width: 50%;
   }
   h1 {
     font-size: 72px;
-    margin-top: 10%;
+    margin-top: 10vh;
     margin-bottom: 72px;
+    white-space: nowrap;
   }
-  .info {
-    margin-left: 10%;
-    width: 56%;
+  @media (max-width: 1300px) {
+    .guillotine img {
+      left: -80px;
+    }
+  }
+  @media (max-width: 1230px) {
+    .info {
+      margin-left: 0;
+    }
+    h1 {
+      font-size: 64px;
+    }
   }
    @media (max-width: 960px) {
     h1 {
       margin-top: 70px;
       margin-bottom: 60px;
-      font-size: 56px;
     }
     #app {
       flex-direction: column-reverse;
       align-items: center;
+      justify-content: flex-end;
     }
     .info {
-      width: 70%;
+      width: 90%;
       margin: 0;
     }
     .guillotine {
-      margin-top: 0;
-      width: 60%;
+      margin-top: 50px;
+      width: 100%;
+      max-width: unset;
       height: unset;
     }
     .guillotine img {
       position: relative;
+      width: 100%;
+      max-width: unset;
+      left: 0;
     }
   }
 
   @media (max-width: 600px) {
     h1 {
       font-size: 48px;
-    }
-    .info {
-      width: 90%;
-    }
-    .guillotine {
-      width: 90%;
     }
   }
 </style>
