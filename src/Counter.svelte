@@ -189,7 +189,7 @@
   <li>
     <div class="label">
       TIME TO JEFF
-      <Tooltip title="BEZOS WORTH:" wage={formatCommas(BEZOS_2020.toString())} />
+      <Tooltip title="BEZOS WORTH:" wage={formatCommas(BEZOS_NET.toString())} />
     </div>
     <div class="numbers-with-units">
       {#each timeToJeff as unit, index}

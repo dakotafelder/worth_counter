@@ -24,6 +24,17 @@
     background: #fff;
     border: 1px solid #000000;
   }
+  .tip::after {
+    position: absolute;
+    bottom: -8.6px;
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    transform: translateX(-50%) rotate(45deg);
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
   .title {
     font-weight: 300;
     font-size: 12px;
@@ -40,14 +51,14 @@
 </style>
 
 <span class="wrapper">
-  <!-- {#if showTip} -->
-  <div class="tip">
-    <div class="title">{title}</div>
-    <div class="rate">
-      ${wage}{#if rate}/{displayRate}{/if}
+  {#if showTip}
+    <div class="tip">
+      <div class="title">{title}</div>
+      <div class="rate">
+        ${wage}{#if rate}/{displayRate}{/if}
+      </div>
     </div>
-  </div>
-  <!-- {/if} -->
+  {/if}
   <img
     on:mouseover={() => {
       showTip = true;
