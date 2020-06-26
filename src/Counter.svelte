@@ -1,5 +1,6 @@
 <script>
   import Ticker from "./Ticker.svelte";
+  import Tooltip from "./Tooltip.svelte";
 
   export let wage;
   export let rate;
@@ -39,14 +40,14 @@
   }
 
   function timeToX(x, wage, rate, seconds) {
-    const wagePerYear = (rate === "hour") ? (wage * WORK_HOURS_IN_YEAR) : wage;
+    const wagePerYear = rate === "hour" ? wage * WORK_HOURS_IN_YEAR : wage;
     const wagePerSecond = wagePerYear / SECONDS_IN_YEAR;
 
-    return formatToYear((x / wagePerSecond) - seconds);
+    return formatToYear(x / wagePerSecond - seconds);
   }
 
   function hourly(wage, seconds) {
-    return formatCommas((wage * (seconds / SECONDS_IN_HOUR)).toFixed(2))
+    return formatCommas((wage * (seconds / SECONDS_IN_HOUR)).toFixed(2));
   }
 
   function yearly(wage, seconds) {
@@ -56,13 +57,13 @@
   function formatCommas(numbers) {
     const decimals = numbers.split(".")[1];
     const numbersAsInt = parseInt(numbers).toString();
-    const numbersAsArray = numbersAsInt.split('');
+    const numbersAsArray = numbersAsInt.split("");
 
     const formattedNumbers = numbersAsArray.reduce((acc, current, idx, src) => {
-      const comma = ((src.length - idx) % 3 === 0 && idx > 0) ? ',' : ''
+      const comma = (src.length - idx) % 3 === 0 && idx > 0 ? "," : "";
 
-      return `${acc}${comma}${current}`
-    }, '')
+      return `${acc}${comma}${current}`;
+    }, "");
 
     return decimals ? `${formattedNumbers}.${decimals}` : formattedNumbers;
   }
@@ -149,14 +150,22 @@
   </li>
 
   <li>
-    <div class="label">YOU'VE EARNED</div>
+    <div class="label">
+      YOU'VE EARNED
+      <Tooltip title="BASE WAGE:" {rate} wage={formatCommas(wage.toString())} />
+    </div>
     <div class="number">
       <Ticker digits={`$${youEarned}`} />
     </div>
   </li>
 
   <li>
-    <div class="label">JEFF'S EARNED</div>
+    <div class="label">
+      JEFF'S EARNED
+      <Tooltip
+        title="2020 EARNINGS:"
+        wage={formatCommas(BEZOS_2020.toString())} />
+    </div>
     <div class="number">
       <Ticker digits={`$${jeffEarned}`} />
     </div>
@@ -177,8 +186,11 @@
     </div>
   </li>
 
-   <li>
-    <div class="label">TIME TO JEFF</div>
+  <li>
+    <div class="label">
+      TIME TO JEFF
+      <Tooltip title="BEZOS WORTH:" wage={formatCommas(BEZOS_2020.toString())} />
+    </div>
     <div class="numbers-with-units">
       {#each timeToJeff as unit, index}
         <div class="number">
