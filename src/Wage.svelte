@@ -18,7 +18,7 @@
 
   function start() {
     const strippedWage = formatWage();
-    if (wage.length === 0 || rate.length === 0) return;
+    if (wage.length === 0 || rate.length === 0 || strippedWage.length === 0) return;
 
     dispatch('start', { rate: rate, wage: parseFloat(strippedWage, 10) });
   }
